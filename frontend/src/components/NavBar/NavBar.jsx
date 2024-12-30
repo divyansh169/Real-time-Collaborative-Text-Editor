@@ -1,72 +1,66 @@
-import docsIcon from '../../assets/doc_image.png';
-import {useNavigate} from "react-router-dom";
-import {useState} from "react";
-
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import Popover from '@mui/material/Popover';
 
-
-export default function NavBar({title, signedin, setsignedin, usernames}) {
+export default function NavBar({ title, signedin, setsignedin, usernames }) {
     const username = localStorage.getItem('username');
     const navigate = useNavigate();
 
     const [anchorEl, setAnchorEl] = useState(null);
-
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    }
+    const handleClick = (event) => setAnchorEl(event.currentTarget);
+    const handleClose = () => setAnchorEl(null);
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    }
-    
-    return (<>
-        <div className="sticky top-0 shadow-md z-40 flex justify-between items-center p-4 bg-white">
-            <div className="flex items-center gap-4 text-black">
-                <img src={docsIcon} alt="Docs" width={40} height={40}/>
-                <h1 style={{color: '#5f6368', fontFamily: 'Product Sans'}} className="text-2xl">
-                    {title}
-                </h1>
-            </div>
-            <div className="flex items-center gap-4">
-                {usernames && <>
-                    <button aria-describedby={id} onClick={handleClick} className="hover:bg-[#0e4eb5] text-white px-4 py-2 rounded-3xl shadow-md bg-[#0b57d0]">
-                        Active Users {usernames.length}
-                    </button>
-                    <Popover
-                        id={id}
-                        open={open}
-                        anchorEl={anchorEl}
-                        onClose={handleClose}
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'left',
-                        }}
-                    >
-                        <div className='flex flex-col p-4'>
-                            {usernames.map((user, index) => {
-                                return <p key={index} className='text-[#5f6368] font-["Product_sans"] text-lg font-bold'>{user}</p>
+    return (
+        <div className="sticky top-0 bg-white p-4 flex justify-between items-center shadow-sm">
+            <h1 className="text-lg text-gray-700">{title}</h1>
 
-                            })}
-                        </div>
-                    </Popover></>}
+            <div className="flex items-center gap-2">
+                {usernames && (
+                    <>
+                        <button 
+                            aria-describedby={id} 
+                            onClick={handleClick} 
+                            className="bg-blue-500 text-white px-3 py-1 rounded-full"
+                        >
+                           Active Users : {usernames.length}
+                        </button>
+                        <Popover
+                            id={id}
+                            open={open}
+                            anchorEl={anchorEl}
+                            onClose={handleClose}
+                            anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                        >
+                            <div className='p-2'>
+                                {usernames.map((user, index) => (
+                                    <p key={index} className='text-sm text-gray-700'>{user}</p>
+                                ))}
+                            </div>
+                        </Popover>
+                    </>
+                )}
+
+                {/* Username displayed in a styled box */}
+                <div className="bg-gray-100 text-gray-700 px-3 py-1 rounded-lg shadow-md">
+                    {username}
+                </div>
+
+                {/* Sign out button */}
                 <button
                     onClick={() => {
-                        setsignedin(true);
-                        
+                        setsignedin(false);
                         localStorage.removeItem('username');
                         localStorage.removeItem('jwtKey');
                         navigate('/');
-                        
                     }}
-                    className="hover:bg-[#0e4eb5] text-white px-4 py-2 rounded-3xl shadow-md bg-[#0b57d0]"
+                    className="bg-red-500 text-white px-3 py-1 rounded-full"
                 >
                     Sign out
                 </button>
-                <p className="text-[#5f6368] font-['Product_sans'] text-lg font-bold">{username}</p>
             </div>
         </div>
-    </>)
+    );
 }
