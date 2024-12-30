@@ -1,4 +1,4 @@
-# Real-time-Collaborative-Text-Editor - Divyansh Bansal (20DEC004)
+# Real-time-Collaborative-Text-Editor - Divyansh Bansal
 
 ## Features
 
