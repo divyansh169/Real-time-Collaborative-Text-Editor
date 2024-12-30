@@ -64,7 +64,7 @@
 - **Reason**: CRDTs is chosen to resolve conflicts during concurrent edits from multiple users. This ensures the same document state across all clients without the need for a central server to mediate conflicts.
 - **Implementation**: A CRDT-like structure is implemented, inspired by a doubly linked list. Each node in the list represents a character or formatting information in the document.
 - **Node Properties**:
-    - **Node ID**: Unique identifier (operationNumber@username), e.g., 3@moaaz.
+    - **Node ID**: Unique identifier (operationNumber@username), e.g., 3@divyansh.
     - **Left ID** and **Right ID**: Act as pointers to the nodes on either side.
     - **Character, Bold, Italic, and Deleted**: Store the character and its formatting or deletion state.
 - **Advantages**:
