@@ -42,7 +42,7 @@ function EditWrapper({ username }) {
     const navigate = useNavigate();
 
     return (
-        <StompSessionProvider url={'wss://docscrdt.azurewebsites.net/docs/ws'}
+        <StompSessionProvider url={'wss://localhost:3000/docs/ws'}
             connectHeaders={{ "Authentication": localStorage.getItem('jwtKey') }}
             onDisconnect={() => navigate('/view')}
             debug={test => console.log(test)}>

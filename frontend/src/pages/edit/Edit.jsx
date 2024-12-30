@@ -56,7 +56,7 @@ export default function Edit() {
     const stompClient = useStompClient();
 
     useEffect(() => {
-        fetch(`https://docscrdt.azurewebsites.net/api/docs/${docId}`, {
+        fetch(`http://localhost:3000/api/docs/${docId}`, {
             method: 'GET', headers: {
                 "Authorization": localStorage.getItem('jwtKey')
             },
@@ -73,7 +73,7 @@ export default function Edit() {
         if (!quillRef.current) return;
             setCursor(quillRef.current.getEditor().getModule('cursors'));
 
-        fetch(`https://docscrdt.azurewebsites.net/api/docs/changes/${docId}`, {
+        fetch(`http://localhost:3000/api/docs/changes/${docId}`, {
             method: 'GET', headers: {
                 "Authorization": localStorage.getItem('jwtKey')
             },

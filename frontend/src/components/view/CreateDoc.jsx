@@ -12,7 +12,7 @@ export default function CreateDoc({open, setOpen, files, setFiles}) {
     }
 
     function createFile() {
-        fetch('https://docscrdt.azurewebsites.net/api/docs/create', {
+        fetch('http://localhost:3000/api/docs/create', {
             method: 'POST', headers: {
                 'Content-Type': 'application/json', "Authorization": localStorage.getItem('jwtKey')
             },

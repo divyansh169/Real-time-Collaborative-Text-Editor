@@ -13,7 +13,7 @@ export default function Share({open, setOpen, title, docId, setFiles}) {
     }
 
     function shareFile() {
-        fetch(`https://docscrdt.azurewebsites.net/api/docs/users/add/${docId}`, {
+            fetch(`http://localhost:3000/api/docs/users/add/${docId}`, {
             method: 'PATCH', headers: {
                 'Content-Type': 'application/json',
                 "Authorization": localStorage.getItem('jwtKey')

@@ -43,7 +43,7 @@ export default function SharedWith({open, setOpen, shares, docId, setFiles, isVi
                                         <div className='bg-blue-500 min-w-24 rounded-3xl p-2 flex justify-between items-center space-x-2'>
                                             <p className='text-md text-white text-center flex-grow'>{share.username}</p>
                                             {!isViewer && <button onClick={() => {
-                                                fetch(`https://docscrdt.azurewebsites.net/api/docs/users/remove/${docId}`, {
+                                                fetch(`http://localhost:3000/api/docs/users/remove/${docId}`, {
                                                     method: 'DELETE', headers: {
                                                         'Content-Type': 'application/json',
                                                         "Authorization": localStorage.getItem('jwtKey')

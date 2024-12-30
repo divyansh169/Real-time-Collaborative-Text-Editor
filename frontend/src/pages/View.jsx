@@ -17,7 +17,7 @@ export default function View() {
     const username = localStorage.getItem('username');
 
     useEffect(() => {
-        fetch('https://docscrdt.azurewebsites.net/api/docs/all', {
+        fetch('http://localhost:3000/api/docs/all', {
             headers: {
                 "Authorization": localStorage.getItem('jwtKey')
             }

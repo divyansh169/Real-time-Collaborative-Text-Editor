@@ -25,7 +25,7 @@ public class SecurityConfig {
                 .cors((cors) -> {
                     CorsConfiguration config = new CorsConfiguration();
                     config.setAllowCredentials(true);
-                    config.addAllowedOrigin("https://testcrdt.azurewebsites.net/");
+                    config.addAllowedOrigin("http://localhost:5173");
                     config.addAllowedHeader("*");
                     config.addAllowedMethod("*");
                     cors.configurationSource(request -> config);

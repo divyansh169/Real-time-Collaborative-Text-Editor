@@ -6,7 +6,7 @@ export default function Rename({open, setOpen, file, files, setFiles}) {
     const [newName, setNewName] = useState(file.title)
 
     function setName() {
-        fetch(`https://docscrdt.azurewebsites.net/api/docs/rename/${file.id}`, {
+        fetch(`http://localhost:3000/api/docs/rename/${file.id}`, {
             method: 'PATCH', headers: {
                'Content-Type': 'application/json',
                 "Authorization": localStorage.getItem('jwtKey')

@@ -7,7 +7,7 @@ export default function Delete({open, setOpen,file , files, setFiles}) {
         setOpen(false)
     }
     function deleteFile() {
-        fetch(`https://docscrdt.azurewebsites.net/api/docs/delete/${file.id}`, {
+        fetch(`http://localhost:3000/api/docs/delete/${file.id}`, {
             method: 'DELETE',
             headers: {
                 "Authorization": localStorage.getItem('jwtKey')
