@@ -77,7 +77,7 @@
 - **Implementation**: WebSocket broadcasts all user edits, including insertions, deletions, and formatting changes, to all connected clients in real-time.
 - The server processes each update, applies it to the shared CRDT structure, and synchronizes it with all clients.
 
-### 3. Database: H2
+### 3. Database
 - **Reason**: Provides in-memory and persistent storage capabilities, ensuring document changes are saved for later retrieval.
 - **Implementation**:
     - Each node of the CRDT structure is stored in the database.
