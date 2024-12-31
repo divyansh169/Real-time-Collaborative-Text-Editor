@@ -37,7 +37,7 @@ export default function View() {
             <div className="bg-[#f1f3f4] flex flex-col justify-top items-center p-4 min-h-screen">
                 <div className="flex justify-between items-center p-4 w-10/12">
                     <div className="mr-auto">
-                        <h1 className="text-[#5f6368] font-['Product_sans'] text-2xl font-bold">
+                        <h1 className="text-[#5f6368] font-['Product_sans'] text-2xl">
                             My Collab Files
                         </h1>
                     </div>

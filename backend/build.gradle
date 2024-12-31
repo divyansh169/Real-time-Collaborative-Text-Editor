@@ -38,6 +38,7 @@ dependencies {
 	implementation group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '12.6.1.jre11'
 //	implementation 'com.h2database:h2'
 	implementation group: 'com.h2database', name: 'h2', version: '2.2.224'
+	runtimeOnly 'com.h2database:h2'
 
 
 }

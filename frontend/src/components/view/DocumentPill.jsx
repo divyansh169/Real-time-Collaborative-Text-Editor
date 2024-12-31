@@ -30,9 +30,9 @@ export default function DocumentPill({ file, files, setFiles }) {
 
     return (
         <div
-            className="flex justify-between items-center mb-4 py-4 pl-8 bg-white rounded-lg shadow-md w-full cursor-pointer" // Updated width
+            className="flex justify-between items-center mb-4 py-4 pl-8 bg-white rounded-lg shadow-md w-full cursor-pointer"
         >
-            <h1 className="text-[#5f6368] font-['Product_sans'] truncate basis-7/12 text-xl font-bold">{file.title}</h1>
+            <h1 className="text-[#5f6368] font-['Product_sans'] truncate basis-7/12 text-xl">{file.title}</h1>
             <p className="text-[#5f6368] font-['Product_sans'] truncate text-center basis-2/12 text-md">{file.owner}</p>
             <div className="text-[#5f6368] font-['Product_sans'] truncate text-center basis-2/12 text-md flex justify-center">
                 <button onClick={() => { setSharedWith(file.sharedWith.length > 0); }}
