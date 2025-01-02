@@ -54,8 +54,9 @@
 ### Run Frontend:
 - Navigate to the frontend directory : cd frontend
 - Install dependencies : npm install
+- Install Vite : npm install -g vite
 - Start the development server : npm run dev
-- Frontend runnning at localhost:517
+- Frontend runnning at localhost:5173
 - Open browser at http://localhost:5173
 
 ## Technical Decisions
