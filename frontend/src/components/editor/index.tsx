@@ -108,7 +108,7 @@ const Editor: React.FC<Props> = (props) => {
       <Remirror
         manager={manager}
         initialContent={state}
-        placeholder="Start typing...Please be respectful :)"
+        placeholder="Start typing here and collaborate with others.."
         classNames={[
           "p-4 focus:outline-none h-96 overflow-y-auto scrollbar-hide prose lg:prose-xl prose-p:m-0",
         ]}

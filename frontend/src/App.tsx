@@ -20,13 +20,13 @@ const App = () => {
           <label htmlFor="username">Enter your name:</label>
           <input
             type="text"
-            placeholder="Enter your name"
+            placeholder="Enter your name here"
             className="border-2 border-indigo-600 p-2 rounded-lg outline-none"
             value={formData}
             onChange={(e) => setFormData(e.target.value)}
           />
           <p className="text-sm text-gray-500">
-            Enter your name to start collaborating in a room.
+            Enter your name to start collaborating in real time.
           </p>
           <div className="flex justify-end">
             <button
