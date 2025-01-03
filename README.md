@@ -4,15 +4,14 @@
 
 ### Text Editor
 - Basic text editing capabilities: Add, delete, and modify text.
-- Cursor position tracking for individual users.
-- Edits are tracked in real-time.
+- Cursor position tracking with names.
 - Real-time updates visible to all connected users.
-- Plain-text editing with Bold and Italic formatting.
+- Plain-text editing.
 
 ### Real-Time Collaboration
 - Multiple users can edit the document simultaneously.
 - Minimal delay in syncing changes across clients.
-- Displays list of active users who are currently editing the document.
+- Displays cursors of active users who are currently editing the document.
 - Basic conflict resolution to handle simultaneous edits.
 
 ### Persistence
@@ -20,41 +19,31 @@
 - Document can be retrieved when the application is reopened.
 
 ## Tech Stack
-
-### Backend:
-- Java
-- Spring Boot
-- Spring Security
-- STOMP Web Sockets
-- SQL Database
-
-### Frontend:
+- Python
+- TypeScript
+- Django
 - React.js
-- Quill.js
-- HTML
 - CSS
+- HTML
 
 ## Installation & Setup
 
 ### Run Backend:
 - Clone the repository
 - Navigate to the backend directory : cd backend
-- Build and run the backend : gradlew.bat bootRun
-- Backend running at localhost:3000
-- Alternatively, use IntelliJ, postman, etc.
+- Backend running at localhost: python manage.py runserver
 
 ### Run Frontend:
 - Navigate to the frontend directory : cd frontend
 - Install dependencies : npm install
-- Install Vite : npm install -g vite
 - Start the development server : npm run dev
 - Frontend runnning at localhost:5173
-- Open browser at http://localhost:5173
+- Open browser tabs at http://localhost:5173
 
 ## Technical Decisions
 
-### 1. Data Structure: Conflict-Free Replicated Data Types (CRDTs)
-- **Reason**: CRDTs is chosen to resolve conflicts during concurrent edits from multiple users. This ensures the same document state across all clients without the need for a central server to mediate conflicts.
+### 1. Data Structure: Conflict-Free Replicated Data Types (CRDTs) + Yjs (CRDT library)
+- **Reason**: Yjs CRDTs is chosen to resolve conflicts during concurrent edits from multiple users. This ensures the same document state across all clients without the need for a central server to mediate conflicts without data loss.
 - **Implementation**: A CRDT-like structure is implemented, inspired by a doubly linked list. Each node in the list represents a character or formatting information in the document.
 - **Node Properties**:
     - **Node ID**: Unique identifier (operationNumber@username), e.g., 3@divyansh.
@@ -66,7 +55,7 @@
     - Decentralized conflict resolution reduces server load.
  
 ### 2. Real-Time Communication: WebSocket
-- **Reason**: Enables low-latency, bidirectional communication between the client and the server.
+- **Reason**: **Django Channels** extends Django to support **WebSockets** for real-time communication. **Redis** is used for managing WebSocket connections in Django Channels.
 - **Implementation**: WebSocket broadcasts all user edits, including insertions, deletions, and formatting changes, to all connected clients in real-time.
 - The server processes each update, applies it to the shared CRDT structure, and synchronizes it with all clients.
 
@@ -108,27 +97,26 @@ Persistence:
  
 ## Assumptions
 - Plain Text Document: The editor assumes no advanced formatting (e.g., tables or images) is required, focusing solely on plain text with basic bold and italic styles.
-- Simultaneous Edits: Users are expected to edit different parts of the document most of the time, reducing the likelihood of frequent conflicts.
+- Single Document : Currently supports only a single document for real-time collaborative editing.
 - Server Connection: A stable connection to the server is required for real-time collaboration. Offline edits are not handled.
-- User Identification: Each user has a unique identifier, ensuring no overlap in node IDs.
-- Database Integrity: The database remains consistent and synchronized with the CRDT structure.
+- User Identification: Each user has a unique identifier name, ensuring no overlap in node IDs.
 
 ## Limitations
+- Single Document Availability: Currently supports only a single document for real-time collaborative editing.
 - Cloud Deployment: Currently application could run locally and will be deployed on GCP afterwards.
 
 ## Potential Improvements
-- Cloud Deployment:
-    - Deploying the application backend to a cloud platform like AWS, Azure, or Google Cloud.
-    - This will allow users to access the application without needing to run the backend locally.
-    - Configuring the backend with an exposed public API, ensuring it securely handles requests from any connected client.
-    - Using a managed database service for persistent storage, ensuring high availability and scalability.
+- Document Management and Features:
+    - Multiple document support.
+    - Document sharing and permissions (like viewer or editor).
+    - User authentication.
+    - Edit history.
 - Advanced Formatting Options:
     - Adding support for underlining, highlighting, and custom fonts.
     - Implementing formatting for selected text ranges more intuitively.
-- Offline Editing:
-    - Developing offline mode with automatic syncing once the connection is restored.
-    - Using LocalStorage or IndexedDB for temporary storage of offline changes.
+- Cloud Deployment:
+    - Deploying the application backend to a cloud platform like AWS, Azure, or Google Cloud.
+    - This will allow users to access the application without needing to run the backend locally.
 - Scalability Enhancements:
-    - Implementing optimized data structures like distributed CRDTs (e.g., Yjs, Automerge).
-    - Enabling horizontal scaling for handling a larger user base.
-    - Introducing more sophisticated conflict resolution algorithms like Operational Transformation (OT).
+    - Implementing optimized data structures like distributed CRDTs (e.g., Automerge).
+    - Implementing WebRTC (Web Real-Time Communication) to reduce server load and improving performance.
