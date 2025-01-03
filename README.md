@@ -17,15 +17,7 @@
 
 ### Persistence
 - All changes are saved to a database.
-- Documents can be retrieved when the application is reopened.
-
-### User Management
-- **User Registration and Authentication**: Users can register and log in to their accounts securely.
-  
-### Document Management
-- **File Management**: Users can create, open, rename, and delete files.
-- **Access Control**: Share documents with different permissions (viewer or editor) and ensure that only the owner can delete the file.
-- **List Documents**: View a list of both owned and shared documents.
+- Document can be retrieved when the application is reopened.
 
 ## Tech Stack
 
